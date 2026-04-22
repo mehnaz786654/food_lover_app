@@ -1,0 +1,235 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+/* 1. Global Variables (Set Once) */
+:root {
+    --bg: #fffbf8;
+    --accent: #ff6b35; /* Professional Orange/Coral */
+    --accent-light: #ff9f7d;
+    --dark: #1a1c1e;
+    --text-muted: #5e6266;
+    --glass: rgba(255, 255, 255, 0.75);
+    --border: rgba(255, 107, 53, 0.1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg);
+    background-image: radial-gradient(#ff6b3510 1px, transparent 1px);
+    background-size: 30px 30px; /* Subtle dot pattern for 2026 look */
+    margin: 0;
+    color: var(--dark);
+    line-height: 1.6;
+    padding-top: 0;
+}
+img {
+    width: 100%;
+    border-radius: 25px;
+    object-fit: cover; /* Isse image stretch nahi hogi */
+}
+
+/* 2. Navigation */
+.navbar {
+    width: 100%;
+    padding: 15px 0; /* Thoda kam padding taaki scroll karte waqt zyada jagah na ghere */
+    background: rgba(255, 251, 248, 0.85); /* Transparent Glass look */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    
+    /* Ye teen lines navbar ko fix karengi */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Taki navbar boxes ke upar rahe, niche nahi */
+    
+    transition: all 0.3s ease;
+}
+.navbar:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+/* Jab link active ho toh uska rang badal jaye */
+.nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links a {
+    position: relative; 
+    text-decoration: none;
+    color: #333;
+    padding: 5px 12px;
+    display: inline-block;
+}
+
+.nav-links a.active {
+    color: #ff6b35 !important;
+    font-weight: 800;
+}
+
+/* Ye hai wo underline jo sirf active link ke niche aayegi */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Link ke ekdum niche */
+    left: 15%;
+    width: 70%; 
+    height: 3px;
+    background: #ff6b35;
+    border-radius: 10px;
+}
+
+/* Ek choti si underline bhi de sakte hain premium look ke liye */
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo { font-size: 1.6rem; font-weight: 800; }
+.logo span { color: var(--accent); }
+.nav-links a { text-decoration: none; color: var(--dark); margin-left: 25px; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-btn { background: var(--dark); color: white; border: none; padding: 10px 22px; border-radius: 50px; cursor: pointer; margin-left: 20px; font-family: 'Outfit'; }
+
+/* 3. Bento Grid */
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(200px, auto); /* Ye line badal di: ab box content ke sath bada ho jayega */
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.box {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 38px;
+    padding: 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%; /* Box poori height lega */
+    box-sizing: border-box; /* Isse padding box ke andar hi rahegi, bahar nahi niklegi */
+}
+
+.box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(255, 107, 53, 0.12);
+    border-color: var(--accent);
+    background: white;
+}
+
+/* 5. Grid Shaping */
+.hero { grid-column: span 2; grid-row: span 2; padding-top: 80px; /* Upar se extra jagah di hai */}
+.feature-tall { grid-column: span 1; grid-row: span 2; justify-content: flex-start; }
+.feature-small { grid-column: span 1; }
+.feature-medium { grid-column: span 2; }
+
+/* 6. Typography & UI Elements */
+h1 { font-size: 3.2rem; line-height: 1.1; margin: 0 0 20px 0; font-weight: 800; }
+.accent-text { color: var(--accent); }
+p { color: var(--text-muted); font-size: 1.05rem; }
+
+.btn {
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Outfit';
+    transition: 0.3s;
+}
+.main-btn { background: var(--accent); color: white; margin-right: 15px; }
+.dark-btn { background: var(--dark); color: white; }
+.btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+.hero-btns { display: flex; align-items: center; margin-top: 25px; flex-wrap: wrap; gap: 15px; }
+.app-badges img { height: 35px; cursor: pointer; }
+
+img { width: 100%; height: 200px; border-radius: 25px; object-fit: cover; margin-bottom: 15px; }
+.badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+
+.flex-row { display: flex; align-items: center; gap: 20px; }
+
+/* 7. Responsive Design */
+@media (max-width: 1000px) {
+    .container { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 600px) {
+    .container { grid-template-columns: 1fr; }
+    .hero, .feature-tall, .feature-medium { grid-column: span 1; }
+}
+/* Modal Background (Dhundhla parda) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: none; /* Shuru mein chhupa rahega */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Modal White Box */
+.modal-box {
+    background: white;
+    padding: 40px;
+    border-radius: 35px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    font-family: 'Outfit';
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+}

@@ -12,6 +12,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Food<span>Lover</span></div>
+            <div class="menu-toggle" id="mobile-menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#special">Menu</a>
@@ -160,6 +165,14 @@ window.onscroll = () => {
         makeActive(current);
     }
 };
+</script>
+<script>
+    
+    document.getElementById('mobile-menu').onclick = function() {
+         
+        document.querySelector('.nav-links').classList.toggle('active');
+    };
+</script>
 </script>
 </body>
 </html>
